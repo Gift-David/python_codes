@@ -1,4 +1,4 @@
-# This is a simple inventory system for a small retail shop
+# This is a simple inventory system for a retail shop
 
 def display_menu():
     # list to store menu items
@@ -114,14 +114,10 @@ def remove_product(product_id):
 
     return True
             
-    
-        
-
-
-
 
 def main():
     while True:
+        print("Main Menu")
         display_menu()
         choice = int(input(("Enter your choice: ")))
 
@@ -173,5 +169,4 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
-# if __name__ == "___main___":
 main()
