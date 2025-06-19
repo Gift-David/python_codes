@@ -1,11 +1,11 @@
 ## Simple Inventory Management System
 
-This project helps retail shops to manage their Inventory
+This application helps retail shops to manage their Inventory
 
 ## Author: David Gift
 
 ## Features
-This project will be able to;
+This application will be able to;
 - View Inventory
 - Add a product to the inventory
 - Update a product's quantity in the inventory
@@ -13,10 +13,10 @@ This project will be able to;
 - Delete a product from the inventory
 
 ## How It Works
-This project works on the command line interface (CLI), with user-friendly options to seamlessly navigate the system
+This application works on the command line interface (CLI), with user-friendly options to seamlessly navigate the system
 
 ## Skills Implimented
-This project tested my skills on;
+Building this application tested my skills on;
 - Python Functions
 - Python dictionary and list
 - Python 'for' and 'while' loops
