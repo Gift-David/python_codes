@@ -23,8 +23,8 @@ def validate_nonempty_inventory():
     return None
 
 
+# function to view all products
 def view_products():
-    
     # returns a msg if inventory list is empty
     if not inventory:
         print("Inventory is empty")
@@ -37,14 +37,14 @@ def view_products():
     for product in inventory:
         print(f"{product["id"]:<8} | {product["name"]:<25} | {product["quantity"]:<10} | ${product["price"]:<10.2f}")
 
-
+# function to add a product
 def add_product(product_id, product_name, product_quantity, product_price):
-    
     for product in inventory:
         # checks if product_id exist
         if product.get("id").lower() == product_id.lower():
             print(f"Error: Product with ID:{product_id} already exists. Enter a unique ID")
             return False
+        
     # validates the product quantity and price is a non negative integer
     if product_quantity < 0:
         print(f"Error: The quantity can't be negative")
@@ -66,7 +66,7 @@ def add_product(product_id, product_name, product_quantity, product_price):
     print(f"Product '{product_name}' with ID:{product_id} entered successfully!")
     return True
 
-# function to validate product_ID
+# Function to validate product_ID
 def validate_id(product_id):
     for product in inventory:
     # checks if product id doesn't exists
@@ -74,6 +74,7 @@ def validate_id(product_id):
             print(f"Error: Product with ID:{product_id} does not exists. Enter an existing ID")
             return True
 
+# Function to update a product quantity
 def update_product(product_id, product_quantity):
     validate_id(product_id)
     # validates the product quantity and price is a non negative integer
@@ -81,12 +82,14 @@ def update_product(product_id, product_quantity):
         print(f"Error: The quantity can't be negative")
         return False
     
+    # loops through the inventory list and update the quantity
     for product in inventory:
         if product.get("id").lower() == product_id.lower():
             product["quantity"] = product_quantity
             print(f"Product {product["name"]} quantity has been updated successfully")
             return True
 
+# Function to search for a product
 def search_product(product_id):
     validate_id(product_id)
     for product in inventory:
@@ -95,7 +98,8 @@ def search_product(product_id):
             print("-" * 60)
             print(f"{product["id"]:<8} | {product["name"]:<25} | {product["quantity"]:<10} | ${product["price"]:<10.2f}")
             return True
-    
+
+# Function to delete a product 
 def remove_product(product_id):
     validate_id(product_id)
     # confirms the deleting
@@ -114,8 +118,9 @@ def remove_product(product_id):
 
     return True
             
-
+# Main function to be executed
 def main():
+    # Continues to display main menu until user decides to exit
     while True:
         print("Main Menu")
         display_menu()
@@ -137,32 +142,23 @@ def main():
             pass
         elif choice == 3:
             # Prompt for and call function to update a product quantity with its id
-            # validate_nonempty_inventory()
             if not inventory:
                 print("Inventory is empty")
-
                 return True
             product_id = str(input("Enter the product ID: ")).strip()
             product_quantity = int(input("Enter the quantity in stock: "))
+
             update_product(product_id, product_quantity)
-            pass
+
         elif choice == 4:
             # Prompt for id and call function to get the product
-            # validate_nonempty_inventory()
             product_id = str(input("Enter the product ID: ")).strip()
             search_product(product_id)
-            pass
+            
         elif choice == 5:
-            # Prompt for and call function to remove a product
-            # validate_nonempty_inventory()
-            # if not inventory:
-            #     print("Inventory is empty")
-
-            #     return True
-
             product_id = str(input("Enter the product ID: ")).strip()
             remove_product(product_id)
-            pass
+            
         elif choice == 6:
             print("Good bye!")
             break
