@@ -118,9 +118,7 @@ def remove_product(product_id):
 
     return True
             
-# Main function to be executed
 def main():
-    # Continues to display main menu until user decides to exit
     while True:
         print("Main Menu")
         display_menu()
@@ -165,4 +163,5 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
-main()
+if __name__ == "__main__":
+    main()
