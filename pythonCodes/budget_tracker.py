@@ -7,4 +7,4 @@ transaction_number = int(input("Input the number of transactions: "))
 
 remaining_budget = (monthly_budget - amount_spent)
 
-print(f"Category: {budget_category} \nBudget: {monthly_budget} \nSpent: ${amount_spent} \nRemaining: ${remaining_budget} \nTransactions: {transaction_number}")
+print(f"Category: {budget_category} \nBudget: ${monthly_budget} \nSpent: ${amount_spent} \nRemaining: ${remaining_budget} \nTransactions: {transaction_number}")
