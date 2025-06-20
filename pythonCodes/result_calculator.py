@@ -1,64 +1,55 @@
 # A script that calculates students' results
 
-exam_score = float(input("Input your exam score: "))
-test_score = float(input("Input your test score: "))
-practical_score = float(input("Input your practical score: "))
+class InvalidScoreError(Exception):
+    def __init__(self, score_type):
+        self.score_type = score_type
 
-# converts the exam score to the representative overall percentage
-percentage_exam_score = float((exam_score / 100) * 60)
-
-# converts the test score to the representative overall percentage
-percentage_test_score = float((test_score / 100) * 40)
-
-# Ensuring the exam, test and practical scores are not greater than 100, 40, and 20 respectively
+    def __str__(self):
+        return f"Error: Invalid {self.score_type} score"
 
 
-def score_authenticator():
-    exam_err_msg = "Invalid exam score" if 0 > exam_score > 100 else None
-    test_err_msg = "Invalid exam score" if 0 > test_score > 40 else None
-    practical_err_msg = "Invalid exam score" if 0 > practical_score > 20 else None
+def main():
 
-    if (exam_err_msg == True or test_err_msg == True or practical_err_msg == True):
-        score_authenticator(True) and print(exam_err_msg, test_err_msg, practical_err_msg)
+    try:
+        exam_score = float(input("Input your exam score: "))        
+        if exam_score < 0 or exam_score > 100:
+            raise InvalidScoreError("exam")
+        test_score = float(input("Input your test score: "))
+        if test_score < 0 or test_score > 20:
+            raise InvalidScoreError("test")
+        
+        practical_score = float(input("Input your practical score: "))
+        if practical_score < 0 or practical_score > 20:
+            raise InvalidScoreError("practical")
+    except InvalidScoreError as err:
+        print(err)
+    except ValueError as err:
+        print("Error: Only numbers are allowed", err)
+
+    else:
+        percentage_exam_score = float((exam_score / 100) * 60) # converts the exam score to percentage
+
+        total_score = percentage_exam_score + test_score + practical_score
+
+        # Grading the total score
+        if total_score >= 70:
+            grade = "A"
+        elif total_score >= 60:
+            grade = "B"
+        elif total_score >= 50:
+            grade = "C"
+        elif total_score >= 45:
+            grade = "D"
+        elif total_score >= 40:
+            grade = "E"
+        else:
+            grade = "F"
+
+        if practical_score == 0:
+            grade = "F"
+        
+        print(f"Your Result \n{"-" * 10} \nExam score: {exam_score} \nTest Score: {test_score} \nPractical Score: {practical_score} \n{"-"*10} \nTotal Score: {total_score} \nGrade: {grade}")
     
 
-
-
-    # return if exam_err_msg == True or test_err_msg or practical_err_msg == True  else result_calculator()
-
-    
-
-
-def result_calculator():
-    # Calculating the general score
-    total_score = percentage_exam_score + percentage_test_score + practical_score
-
-    #  Returning an "F" grade if practical score is 0
-    if practical_score == float(0):
-        grade = "F"
-
-    # Grading the total score
-    if total_score >= 70:
-        grade = "A"
-    elif total_score >= 60:
-        grade = "B"
-    elif total_score >= 50:
-        grade = "C"
-    elif total_score >= 45:
-        grade = "D"
-    elif total_score >= 40:
-        grade = "E"
-    else:
-        grade = "F"
-
-    print("Your grade is ", grade)
-
-def err_message():
-    if score_authenticator(True):
-        return
-    else:
-        result_calculator()
-
-# score_authenticator()
-err_message()
-# result_calculator()
+if __name__ == "__main__":
+    main()
