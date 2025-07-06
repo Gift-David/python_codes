@@ -31,7 +31,7 @@ def view_products():
 
         return False
     print("---Current Inventory--")
-    print(f"{"id":<8} | {"name":<25} | {"quantity":<10} | {"price":<10} ($)")
+    print(f"{"id":<8} | {"name":<25} | {"quantity":<10} | {"price ($)":<10}")
     print("-" * 60)
 
     for product in inventory:
@@ -94,7 +94,7 @@ def search_product(product_id):
     validate_id(product_id)
     for product in inventory:
         if product["id"] == product_id:
-            print(f"{"id":<8} | {"name":<25} | {"quantity":<10} | {"price":<10} ($)")
+            print(f"{"id":<8} | {"name":<25} | {"quantity":<10} | {"price ($)":<10}")
             print("-" * 60)
             print(f"{product["id"]:<8} | {product["name"]:<25} | {product["quantity"]:<10} | ${product["price"]:<10.2f}")
             return True
@@ -158,7 +158,7 @@ def main():
             remove_product(product_id)
             
         elif choice == 6:
-            print("Good bye!")
+            print("Goodbye!")
             break
         else:
             print("Invalid choice. Please try again.")
